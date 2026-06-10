@@ -1,0 +1,59 @@
+/* @theme am_hnu */
+
+@import "am_template";
+
+:root {
+  --color-code-bg: #f8eeee;
+  --color-coverbg: #a71930;
+  --color-few: #007f67;
+  --color-footer: #8c8c8c;
+  --color-main: #251215;
+  --color-much: #c7222a;
+  --color-navbar-bg: #f6dedf;
+  --color-navbar-font: rgb(108, 95, 91);
+  --color-quote: rgba(199, 34, 42, 0.08);
+  --color-title: rgb(255, 255, 255);
+  --color-trans: #d9686d;
+}
+
+section.cover_c img,
+section.cover_e img,
+section.toc_b img {
+  filter: none;
+}
+
+section.cover_b h1 {
+  height: 22%;
+  top: 14%;
+  line-height: 1.12;
+  padding: 20px 36px;
+  overflow: hidden;
+}
+
+section.cover_b h6 {
+  top: 31%;
+  height: 12%;
+  padding-top: 22px;
+}
+
+section.cover_e footer {
+  height: 118px;
+  width: 18%;
+  left: 78%;
+  bottom: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section.cover_e footer>img {
+  max-height: 108px;
+  width: auto;
+  transform: none;
+}
+
+section.cover_e header>img {
+  transform: none;
+  max-height: 86px;
+  width: auto;
+}

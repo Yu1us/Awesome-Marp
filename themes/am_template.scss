@@ -4,19 +4,32 @@
 @import 'default';
 @import 'https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css';
 @import url(https://fonts.bunny.net/css?family=charm:700);
+@import url(https://fonts.bunny.net/css?family=fira-code:400,700);
 @auto-scaling true;
+
+@font-face {
+  font-family: 'HarmonyOS Sans';
+  src: url('fonts/HarmonyOS_Sans_SC_Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'HarmonyOS Sans';
+  src: url('fonts/HarmonyOS_Sans_SC_Bold.ttf') format('truetype');
+  font-weight: 700;
+}
 
 
 :root{
-  --font-family-main: 'Latin Modern Math','Adobe Garamond','方正宋刻本秀楷简体','Calibri','楷体','华文中宋','楷体','霞鹜文楷 屏幕阅读版';  
-  --font-family-title: 'Optima LT Medium','Arial','方正苏新诗柳楷简体','黑体'; 
-  --font-family-footer: 'Charm','Calibri','叶根友毛笔行书修正版','方正苏新诗柳楷简体','楷体';
-  --font-family-code: 'Fira Code','HYMingChanKeBen W','Consolas','霞鹜文楷等宽','华文中宋','宋体';
+  --font-family-main: 'HarmonyOS Sans';  
+  --font-family-title: 'HarmonyOS Sans';
+  --font-family-footer: 'HarmonyOS Sans';
+  --font-family-code: 'Fira Code';
   --font-size-1: 55px;
   --foot-size-subtitle: 42px;
   --font-size-2-3: 38px; 
   --font-size-4-5: 30px; 
-  --font-size-main: 25px;
+  --font-size-main: 27px;
   --font-size-footer: 22px;
   --font-size-page: 12px;
   --font-size-code: 22px;
@@ -26,13 +39,16 @@
 
 section {
   font-family: var(--font-family-main);
+  font-weight: 400;
   font-size: var(--font-size-main);
   color: var(--color-main);
   text-align: justify; 
+  display: flex;
   }
 
 h1 {
   font-family: var(--font-family-title); 
+  font-weight: 700;
   font-size: var(--font-size-1);
   color: var(--color-title);   
 }  
@@ -40,12 +56,14 @@ h1 {
 
 h2,h3 {
   font-family: var(--font-family-title); 
+  font-weight: 700;
   font-size: var(--font-size-2-3);
   color: var(--color-much);
 }
 
 h4, h5 {
   font-family: var(--font-family-title); 
+  font-weight: 700;
   font-size: var(--font-size-4-5);
   color: var(--color-much);
 }
@@ -645,7 +663,7 @@ section.toc_b img {
   filter: brightness(1000%)  grayscale(100%);
 }
 
-section.fglass ul {
+section.fglass > ul {
   padding: 20px 20px 20px 60px;
   margin-left: -25px;
   border-radius: 0px 0px 20px 20px;
@@ -802,7 +820,7 @@ section.cols2_ol_ci p {
   margin-left: -1.5%;
 }
 
-section.cols2_ol_ci ol, section.cols2_ol_ci ul {
+section.cols2_ol_ci > ol, section.cols2_ol_ci > ul {
   left: 1%;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -810,13 +828,14 @@ section.cols2_ol_ci ol, section.cols2_ol_ci ul {
   list-style-type: none;
   width: 98%;
   column-gap: 3em;
+  counter-reset: cols2_ol_ci;
 } 
 
-section.cols2_ol_ci ol li, section.cols2_ol_ci ul li {
+section.cols2_ol_ci > ol > li, section.cols2_ol_ci > ul > li {
   counter-increment: cols2_ol_ci;
 } 
 
-section.cols2_ol_ci ol li::before, section.cols2_ol_ci ul li::before {
+section.cols2_ol_ci > ol > li::before, section.cols2_ol_ci > ul > li::before {
   content: counter(cols2_ol_ci);
   margin: 0px 20px 0px 0px;
   width: 30px;
@@ -833,7 +852,7 @@ section.cols2_ol_ci ol li::before, section.cols2_ol_ci ul li::before {
   margin-left: -8%;
 } 
 
-section.cols2_ol_ci ol li:hover::before, section.cols2_ol_ci ul li:hover::before {
+section.cols2_ol_ci > ol > li:hover::before, section.cols2_ol_ci > ul > li:hover::before {
   -moz-transition: all 0.5s ease-out;
   transition: all 0.7s ease-out;
   -moz-transform: rotate(360deg); 
@@ -842,6 +861,35 @@ section.cols2_ol_ci ol li:hover::before, section.cols2_ol_ci ul li:hover::before
   -ms-transform: rotate(360deg); 
   transform: rotate(360deg);
 } 
+
+section.cols2_ol_ci li > ol,
+section.cols2_ol_ci li > ul {
+  display: block;
+  grid-template-columns: none;
+  list-style-position: outside;
+  list-style-type: disc;
+  width: auto;
+  margin: 0.35em 0 0.1em 1.6em;
+  padding-left: 0;
+  column-gap: 0;
+  gap: 0;
+  counter-reset: none;
+}
+
+section.cols2_ol_ci li > ol {
+  list-style-type: decimal;
+}
+
+section.cols2_ol_ci li > ol > li,
+section.cols2_ol_ci li > ul > li {
+  counter-increment: none;
+  margin: 0.18em 0;
+}
+
+section.cols2_ol_ci li > ol > li::before,
+section.cols2_ol_ci li > ul > li::before {
+  content: none;
+}
 
 
 section.cols2_ul_sq h2, section.cols2_ul_sq h3 {
@@ -934,7 +982,7 @@ section.cols-2 {
   overflow: visible;
   display: grid;
   gap: 1.5rem;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: 10% 90%;
   grid-template-areas:
       "slideheading slideheading"
@@ -1592,6 +1640,7 @@ section.footnote .bdiv {
   grid-area: "footnote";
   font-size: 85%;
   bottom: 5%;
+  font-family: 'Charm';
 }
 section.footnote .bdiv::before {
   border-top: 1.8px dashed var(--color-coverbg);
@@ -1600,70 +1649,64 @@ section.footnote .bdiv::before {
   margin-bottom: 1em;
 }
 
-section.tinytext>p, section.tinytext>ul, section.tinytext>ol, section.tinytext>table, section.tinytext>blockquote {
-  font-size: 80%;
+/*
+:root {
+  ...
+  --font-size-1: 55px;
+  --foot-size-subtitle: 42px;
+  --font-size-2-3: 38px;
+  --font-size-4-5: 30px;
+  --font-size-main: 27px;
+  --font-size-footer: 22px;
+  --font-size-code: 22px;
+  --font-size-page: 12px;
 }
-section.tinytext code {
-  font-size: 90%;
-}
-section.tinytext strong {
-  font-size: 100%;
-}
-section.tinytext em {
-  font-size: 90%;
-}
-section.tinytext pre {
-  font-size: 70%;
-}
-section.smalltext>p, section.smalltext>ul, section.smalltext>ol, section.smalltext>table, section.smalltext>blockquote {
-  font-size: 90%;
-}
-section.smalltext code {
-  font-size: 90%;
-}
-section.smalltext strong {
-  font-size: 100%;
-}
-section.smalltext em {
-  font-size: 90%;
-}
-section.smalltext pre {
-  font-size: 80%;
-}
-section.largetext>p, section.largetext>ul, section.largetext>ol, section.largetext>table, section.largetext>blockquote{
-  font-size: 115%;
-}
-section.largetext strong {
-  font-size: 100%;
-}
-section.largetext code {
-  font-size: 90%;
-}
-section.largetext em {
-  font-size: 90%;
-}
-section.largetext pre {
-  font-size: 105%;
-}
-section.hugetext>p, section.hugetext>ul, section.hugetext>ol, section.hugetext>table, section.hugetext>blockquote {
-  font-size: 130%;
-}
-section.hugetext strong {
-  font-size: 100%;
-}
-section.hugetext code {
-  font-size: 90%;
-}
-section.hugetext em {
-  font-size: 90%;
-}
-section.hugetext pre {
-  font-size: 120%;
+*/
+
+section.tinytext {
+  /* 0.8x */
+  --font-size-1: 44px;
+  --foot-size-subtitle: 34px;
+  --font-size-2-3: 30px;
+  --font-size-4-5: 24px;
+  --font-size-main: 22px;
+  --font-size-footer: 18px;
+  --font-size-code: 18px;
+  --font-size-page: 10px;
 }
 
+section.smalltext {
+  /* 0.9x */
+  --font-size-1: 50px;
+  --foot-size-subtitle: 38px;
+  --font-size-2-3: 34px;
+  --font-size-4-5: 27px;
+  --font-size-main: 24px;
+  --font-size-footer: 20px;
+  --font-size-code: 20px;
+  --font-size-page: 11px;
+}
 
+section.largetext {
+  /* 1.15x */
+  --font-size-1: 63px;
+  --foot-size-subtitle: 48px;
+  --font-size-2-3: 44px;
+  --font-size-4-5: 35px;
+  --font-size-main: 31px;
+  --font-size-footer: 25px;
+  --font-size-code: 25px;
+  --font-size-page: 14px;
+}
 
-
-
-
-
+section.hugetext {
+  /* 1.3x */
+  --font-size-1: 72px;
+  --foot-size-subtitle: 55px;
+  --font-size-2-3: 49px;
+  --font-size-4-5: 39px;
+  --font-size-main: 35px;
+  --font-size-footer: 29px;
+  --font-size-code: 29px;
+  --font-size-page: 16px;
+}
